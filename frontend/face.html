@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Emotion Detection</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
+
+    <h1>Facial Emotion Detection</h1>
+
+    <video id="video" width="320" height="240" autoplay muted style="border:2px solid black; background:black;"></video>
+    <br><br>
+
+    <button onclick="detectEmotion()">Detect Emotion</button>
+
+    <h2 id="result">Waiting...</h2>
+
+    <!-- Face API (no defer now) -->
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    
+    <script>
+        const MODEL_URL = "https://justadudewhohacks.github.io/face-api.js/models";
+
+        // ✅ run ONLY after everything is loaded
+        window.onload = async function () {
+            try {
+                document.getElementById("result").innerText = "Loading models...";
+
+                await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+                await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL);
+
+                document.getElementById("result").innerText = "Models loaded. Starting camera...";
+
+                const video = document.getElementById("video");
+
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+
+                video.onloadedmetadata = () => {
+                    video.play();
+                    document.getElementById("result").innerText = "Camera started 🎥";
+                };
+
+            } catch (err) {
+                document.getElementById("result").innerText = "ERROR: " + err.message;
+                console.error(err);
+            }
+        };
+
+        async function detectEmotion() {
+            const video = document.getElementById("video");
+
+            const detection = await faceapi
+                .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+                .withFaceExpressions();
+
+            if (!detection) {
+                document.getElementById("result").innerText = "No face detected 😕";
+                return;
+            }
+
+            const expressions = detection.expressions;
+
+            let maxEmotion = Object.keys(expressions).reduce((a, b) =>
+                expressions[a] > expressions[b] ? a : b
+            );
+
+            let confidence = expressions[maxEmotion].toFixed(2);
+
+            document.getElementById("result").innerText =
+                `Emotion: ${maxEmotion} (${confidence})`;
+        }
+    </script>
+
+</body>
+</html>

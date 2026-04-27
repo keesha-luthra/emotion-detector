@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Emotion Detection System</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+<div id="wrapper">
+
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-brain"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <h1>Emotion Detection</h1>
+                <p>Text • Speech • Facial Emotion Analysis</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#text">Text</a></li>
+                <li><a href="#speech">Speech</a></li>
+                <li><a href="#face">Face</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="main">
+
+        <!-- ================= TEXT ================= -->
+        <article id="text">
+            <h2 class="major">Text Emotion Detection</h2>
+
+            <textarea id="textInput" placeholder="Enter your text..."></textarea>
+            <br><br>
+
+            <button onclick="analyze()">Analyze</button>
+
+            <!-- ✅ SHOW RESULT AGAIN -->
+            <div id="resultText" style="margin-top:15px;"></div>
+        </article>
+
+        <!-- ================= SPEECH ================= -->
+        <article id="speech">
+            <h2 class="major">Speech Emotion Detection</h2>
+
+            <button onclick="startListening()">🎤 Speak</button>
+
+            <!-- ✅ SHOW RESULT -->
+            <div id="resultSpeech" style="margin-top:15px;"></div>
+        </article>
+
+        <!-- ================= FACE ================= -->
+        <article id="face">
+            <h2 class="major">Facial Emotion Detection</h2>
+
+            <video id="video" width="320" height="240" autoplay muted 
+                style="border-radius:10px; border:2px solid white;"></video>
+
+            <br><br>
+
+            <button onclick="detectEmotion()">Detect Emotion</button>
+
+            <!-- ✅ SHOW RESULT -->
+            <div id="resultFace" style="margin-top:15px;"></div>
+        </article>
+
+        <!-- ================= SUMMARY ================= -->
+        <article id="summary">
+            <h2 class="major">Multimodal Summary</h2>
+
+            <!-- TEXT -->
+            <p><strong>Text Emotion:</strong> <span id="textResult">-</span></p>
+            <div class="progress"><div id="textBar"></div></div>
+
+            <!-- SPEECH -->
+            <p><strong>Speech Emotion:</strong> <span id="speechResult">-</span></p>
+            <div class="progress"><div id="speechBar"></div></div>
+
+            <!-- FACE -->
+            <p><strong>Face Emotion:</strong> <span id="faceResultSummary">-</span></p>
+            <div class="progress"><div id="faceBar"></div></div>
+
+            <hr>
+
+            <!-- FINAL -->
+            <h3>
+                Final Emotion: 
+                <span id="finalEmotion" style="color:#ffcc00;">-</span>
+            </h3>
+
+            <p>
+                <strong>Confidence:</strong> 
+                <span id="finalConfidence">-</span>
+            </p>
+
+            <!-- BREAKDOWN -->
+            <h4>Fusion Breakdown</h4>
+            <pre id="fusionDetails" 
+                 style="background:#111; padding:10px; border-radius:8px;">
+-
+            </pre>
+
+        </article>
+
+        <!-- ================= ABOUT ================= -->
+        <article id="about">
+            <h2 class="major">About</h2>
+            <p>
+                This system detects emotions using:
+                <br>• Text input (Transformer-based NLP)
+                <br>• Speech input (converted to text)
+                <br>• Facial expressions (Computer Vision)
+                <br><br>
+                The final result is generated using <b>weighted multimodal fusion</b>.
+            </p>
+        </article>
+
+    </div>
+
+    <footer id="footer">
+        <p>Emotion Detection System</p>
+    </footer>
+
+</div>
+
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

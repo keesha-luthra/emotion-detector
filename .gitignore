@@ -1,0 +1,48 @@
+# ================= PYTHON =================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*.so
+
+# ================= VIRTUAL ENV =================
+venv/
+env/
+.venv/
+ENV/
+
+# ================= ENV VARIABLES =================
+.env
+
+# ================= MODEL FILES (VERY LARGE) =================
+my_emotion_model_20/
+
+training/my_emotion_model_20/
+training/results_20emo/
+training/results/
+
+# ================= NOTEBOOKS =================
+.ipynb_checkpoints/
+
+# ================= OS FILES =================
+.DS_Store
+Thumbs.db
+
+# ================= IDE =================
+.vscode/
+.idea/
+
+# ================= LOGS =================
+*.log
+
+# ================= TEMP FILES =================
+*.tmp
+*.cache
+
+# ================= NODE (if ever used) =================
+node_modules/
+
+# ================= BUILD FILES =================
+build/
+*.zip
